@@ -23,16 +23,12 @@ router.post('/add', function(req, res, next) {
 	var category = req.body.category;
 	var author = req.body.author;
 	var date = new Date();
+	var imageName;
 
-	if (req.files.mainimage) {
-		var mainImageOriginalName = req.files.mainimage.originalname;
-		var mainImageName = req.files.mainimage.name;
-		var mainimageMime = req.files.mainimage.mimetype;
-		var mainimagePath = req.files.mainimage.path;
-		var mainimageExt = req.files.mainimage.extension;
-		var mainimageSize = rqe.files.mainimage.size;
+	if (req.file) {
+		imageName = req.file.filename;
 	} else {
-		var mainImageName = 'cat.jpeg';
+		imageName = 'cat.jpeg';
 	}
 
 	// validation
@@ -57,7 +53,7 @@ router.post('/add', function(req, res, next) {
 			"category": category,
 			"date": date,
 			"author": author,
-			"mainimage": mainImageName
+			"mainimage": imageName
 		}, function(err, post) {
 			if (err) {
 				res.send("There was an issue submitting the post");
@@ -72,4 +68,3 @@ router.post('/add', function(req, res, next) {
 
 
 module.exports = router;
-
