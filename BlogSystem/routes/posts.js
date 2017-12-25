@@ -1,7 +1,8 @@
 var express = require('express');
+var mongoURI = require('../config/keys').mongoURI;
 var router = express.Router();
 var mongo = require('mongodb');
-var db = require('monk')('mongodb://felix:felix@ds137882.mlab.com:37882/blogsystem');
+var db = require('monk')(mongoURI);
 
 
 router.get('/add', function(req, res, next) {

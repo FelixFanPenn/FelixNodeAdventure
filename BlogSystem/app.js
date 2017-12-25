@@ -7,7 +7,9 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var mongo = require('mongodb');
-var db = require('monk')('mongodb://felix:felix@ds137882.mlab.com:37882/blogsystem');
+var mongoURI = require('./config/keys').mongoURI;
+
+var db = require('monk')(mongoURI);
 var multer = require('multer');
 var flash = require('connect-flash');
 
