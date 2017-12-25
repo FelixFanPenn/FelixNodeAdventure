@@ -154,3 +154,19 @@ img {
 	width: 750px;
 	height: 700px;
 }
+
+.comment-form {
+	margin: 30px 0
+}
+
+.comment {
+	background: #ccc;
+	padding: 5px;
+	border: #666 solid 1px;
+	margin: 15px 0 20px;
+}
+
+.comment-name {
+	font-weight: bold
+}
+
