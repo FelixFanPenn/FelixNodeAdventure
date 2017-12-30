@@ -15,7 +15,7 @@ module.exports = function (router) {
       //get total
       for (var item in cart) {
         displayCart.items.push(cart[item]);
-        total += (cart[item].qty * cart[item].price);
+        total += cart[item].subprice;
       }
 
       displayCart.total = total;
