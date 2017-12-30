@@ -1,0 +1,16 @@
+{>"layouts/manage" /}
+{<title}
+  About BookStore
+{/title}
+
+{<body}
+  <div class="row">
+    <div class="large-12 columns">
+      <h2>About Us</h2>
+      <p>We are just a bunch of thirsty money suckers trying to get your money.
+      And we offer this very beautiful online book selling website to help us fulfill our goal.
+      </p>
+      <p>lol this is a small prototype.</p>
+    </div>
+  </div>
+{/body}
