@@ -1,0 +1,23 @@
+{>"layouts/master" /}
+
+{<body}
+	<div class="row">
+		<div class="large-4 columns">
+			<img src="/img/node1.jpeg">
+		</div>
+
+		<div class="large-8 columns">
+			<h2>Node1 book</h2>
+			<ul class="bookInfo">
+				<li>Category: Node.js</li>
+				<li>Author: John Doe</li>
+				<li>Publisher: felix</li>
+			</ul>
+			<br>
+			<div class="price"><span>$19.99</span></div>
+			<br>
+			<p>this is a nodejs book 1</p>
+			<a class="button success">Add to Cart</a>
+		</div>
+	</div>
+{/body}
