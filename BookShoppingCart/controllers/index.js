@@ -22,7 +22,7 @@ module.exports = function (router) {
         		var model = {
         			books: books
         		};
-        		console.log(books.length);
+                
         		res.render('index', model);
         	}
         });
