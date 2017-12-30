@@ -1,17 +1,31 @@
 'use strict';
 
-var IndexModel = require('../models/index');
+//var Book = require('../models/bookModel');
+var mongoURI = require('../config/keys').mongoURI;
+var db = require('monk')(mongoURI);
 
 
 module.exports = function (router) {
 
-    var model = new IndexModel();
-
     router.get('/', function (req, res) {
-        
-        
-        res.render('index', model);
-        
+
+        var books = db.get('books');
+        books.find({}, function(err, books){
+        	if (err) {
+        		console.log(err);
+        	} else {
+
+                for (var i = 0; i < books.length; i++) {
+                    books[i].truncText = books[i].description.substring(0, 50);
+                }
+
+        		var model = {
+        			books: books
+        		};
+        		console.log(books.length);
+        		res.render('index', model);
+        	}
+        });
         
     });
 

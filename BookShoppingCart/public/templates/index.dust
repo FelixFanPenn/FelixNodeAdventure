@@ -1,48 +1,15 @@
 {>"layouts/master" /}
 
 {<body}
-	<div class="large-3 columns book">
-		<img src="/img/node1.jpeg" class="resize">
-		<h4>Node1</h4>
-		<p>this is node1 book</p>
-		<div class="price">Buy it for <span>$19.99</span></div>
-		<br>
-		<a href="/books/details/1" class="button small">Book Details</a>
-	</div>
 
-	<div class="large-3 columns book">
-		<img src="/img/node2.jpeg">
-		<h4>Node2</h4>
-		<p>this is node1 book</p>
-		<div class="price">Buy it for <span>$29.99</span></div>
-		<br>
-		<a href="/books/details/2" class="button small">Book Details</a>
-	</div>
-
-	<div class="large-3 columns book">
-		<img src="/img/node3.jpeg">
-		<h4>Node3</h4>
-		<p>this is node1 book</p>
-		<div class="price">Buy it for <span>$49.99</span></div>
-		<br>
-		<a href="/books/details/3" class="button small">Book Details</a>
-	</div>
-
-	<div class="large-3 columns book">
-		<img src="/img/node4.jpeg">
-		<h4>Node4</h4>
-		<p>this is node1 book</p>
-		<div class="price">Buy it for <span>$89.99</span></div>
-		<br>
-		<a href="/books/details/4" class="button small">Book Details</a>
-	</div>
-
-	<div class="large-3 columns book">
-		<img src="/img/node5.jpeg">
-		<h4>Node5</h4>
-		<p>this is node1 book</p>
-		<div class="price">Buy it for <span>$29.99</span></div>
-		<br>
-		<a href="/books/details/5" class="button small">Book Details</a>
-	</div>
+	{#books}
+		<div class="large-3 columns book">
+			<img src="/img/{.cover}" class="resize">
+			<h4>{.title}</h4>
+			<p>{.truncText}</p>
+			<div class="price">Buy it for <span>${.price}</span></div>
+			<br>
+			<a href="/books/details/{._id}" class="button small">Book Details</a>
+		</div>
+	{/books}
 {/body}
