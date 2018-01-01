@@ -1,0 +1,16 @@
+{
+  "name": "websocketchatapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "felix",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "nodemon": "^1.14.7",
+    "socket.io": "^2.0.4"
+  }
+}
