@@ -2,7 +2,8 @@
 <html>
 <head>
 	<title> ChatIO</title>
-	<style type="text/css">
+
+	<style>
 		body {
 			background: #f9f9f9;
 		}
@@ -17,7 +18,7 @@
 		}
 
 		#mainWrapper {
-			
+			display: none;
 		}
 
 		#chatWrapper {
@@ -46,19 +47,22 @@
 			background: #f4f4f4;
 			padding: 10px;
 			margin-left: 20px;
-			display: none;
 		}
 
 		input {
 			height: 30px;
 		}
 	</style>
+
 </head>
+
+
 <body>
 	<div id='container'>
 		<div id="namesWrapper">
 			<h2>ChatIO</h2>
 			<p>Create Username:</p>
+			<div id="error"> </div>
 			<form id='usernameForm'>
 				<input size='35' id="username">
 				<input type="submit" value="Submit">
@@ -68,7 +72,9 @@
 		<div id='mainWrapper'>
 			<h2>ChatIO</h2>
 			<div id='chatWrapper'>
-				<div id="chatWindow"></div>
+				<div id="chatWindow">
+
+				</div>
 				<form id="messageForm">
 					<input size='35' id="message", placeholder="Type something...">
 					<input type="submit" value="Say it!">
@@ -81,13 +87,42 @@
 		</div>
 	</div>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="./socket.io.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+
 	<script>
+
 		$(function(){
 			var socket = io.connect();
 			var $messageForm = $('#messageForm');
 			var $message = $('#message');
 			var $chat = $('#chatWindow');
+			var $usernameForm = $('#usernameForm');
+			var $users = $('#users');
+			var $username = $('#username');
+			var $error = $('#error');
+			var userName = '';
+
+			$usernameForm.submit(function(e){
+				e.preventDefault();
+				socket.emit('new user', $username.val(), function(data){
+					if (data) {
+						$('#namesWrapper').hide();
+						$('#mainWrapper').show();
+						userName = $username.val();
+					} else {
+						$error.html('Username is already taken');
+					}
+				});
+				$username.val('');
+			});
+
+			socket.on('usernames', function(data){
+				var html = '';
+				for (var i = 0; i < data.length; i++) {
+					html += data[i] + "<br>";
+				}
+				$users.html(html);
+			});
 
 			$messageForm.submit(function(e) {
 				e.preventDefault();
@@ -95,9 +130,23 @@
 				$message.val('');
 			});
 
+
+			$messageForm.keypress(function(e) {
+				if (userName != '') {
+					e.preventDefault();
+					socket.emit('typing', userName);
+				}
+			});
+
 			socket.on('new message', function(data) {
-				$chat.append(data.msg + '<br>');
-			})
+				$chat.append('<strong>' + data.user + '</strong>: ' + data.msg + '<br>');
+			});
+
+
+			socket.on('typing', function(data) {
+				$chat.append(data + " is typing...");
+			});
+
 		});
 	</script>
 </body>
