@@ -42,9 +42,7 @@ const config = {
                 $filter: 'env',
                 production: process.env.MONGODB_URI,
                 test: process.env.MONGODB_URI,
-                $default: process.env.MONGODB_URI,
-                //test: 'mongodb://felix:felix@ds235807.mlab.com:35807/communityevent',
-                //$default: 'mongodb://felix:felix@ds235807.mlab.com:35807/communityevent'
+                $default: process.env.MONGODB_URI
             }
         },
         autoIndex: true
